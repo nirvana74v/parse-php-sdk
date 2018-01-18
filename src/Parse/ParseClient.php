@@ -587,6 +587,11 @@ final class ParseClient
             }
         }
 
+        preg_match('/\{["\w:\W]+\}/',$response,$matches);
+        if (count($matches)> 0) {
+                $response = $matches[0];
+        }
+
         $decoded = json_decode($response, true);
 
         if (!isset($decoded) && $response !== '') {
